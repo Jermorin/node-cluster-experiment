@@ -17,7 +17,7 @@ npm run build
 ## Usage
 
 - `npm run simple` : contains a simple use of cluster module
-- `npm run express` : a more advanced example with built with Express server
+- `npm run express` : a more advanced example with express
 
 ## License
 
