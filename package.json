@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "babel --optional runtime src -d dist",
     "simple": "node dist/simple.js",
-    "express": "node dist/express.js"
+    "express": "node dist/express.js",
+    "performance": "node dist/performance.js"
   },
   "repository": {
     "type": "git",
