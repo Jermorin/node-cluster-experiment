@@ -19,6 +19,7 @@ npm run build
 - `npm run simple` : contains a simple use of cluster module
 - `npm run express` : a more advanced example with express
 - `npm run performance` : naive test performance using cluster module
+- `npm run communication` : how master and workers can communicate ?
 
 ## License
 

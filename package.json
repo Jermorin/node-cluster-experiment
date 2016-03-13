@@ -8,7 +8,8 @@
     "build": "babel --optional runtime src -d dist",
     "simple": "node dist/simple.js",
     "express": "node dist/express.js",
-    "performance": "node dist/performance.js"
+    "performance": "node dist/performance.js",
+    "communication":"node dist/communication.js"
   },
   "repository": {
     "type": "git",
