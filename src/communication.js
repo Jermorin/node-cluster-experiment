@@ -7,18 +7,23 @@ const factorial = (num) => {
     else return num * factorial(num - 1);
 };
 
-class Message{
-    constructor({from, type, data: {result, number}}){
+class Message {
+    constructor({from, type, data: {result, number}}) {
         this.from = from;
         this.type = type;
         this.data = {result, number};
         this.toString();
     }
 
-    toString(){
+    toString() {
         console.log(`${this.from} : ${this.type} : ${this.data.number} = ${this.data.result}`)
     }
 }
+
+const createWorkers = () => {
+    let worker = cluster.fork();
+    worker.on('message', message => new Message(message));
+};
 
 
 if (cluster.isMaster) {
@@ -26,8 +31,7 @@ if (cluster.isMaster) {
     console.log(`Master cluster setting up ${numWorkers} workers...`);
 
     for (var i = 0; i < numWorkers; i++) {
-        let worker = cluster.fork();
-        worker.on('message', message => new Message(message));
+        createWorkers();
     }
 
     cluster.on('online', worker => console.log(`Worker ${worker.process.pid} is online`));
@@ -43,8 +47,7 @@ if (cluster.isMaster) {
     cluster.on('exit', (worker, code, signal) => {
         console.log(`Worker ${worker.process.pid} died with code: ${code} and signal: ${signal}`);
         console.log(`Starting a new worker`);
-        var worker = cluster.fork();
-        worker.on('message', message => new Message());
+        createWorkers();
     });
 } else {
     process.on('message', message => {
